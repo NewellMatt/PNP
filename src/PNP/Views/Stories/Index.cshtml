@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PNP.Models.Story>
+
+<html>
+<head>
+    <title>PNP</title>
+</head>
+<body>
+    <h2>Public News Paper</h2>
+    <ul>
+        @foreach (var listStory in Model)
+        {
+            <li>@Html.DisplayFor(modelItem => listStory.Description)</li>
+        }
+    </ul>
+</body>
+</html>

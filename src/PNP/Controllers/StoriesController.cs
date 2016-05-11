@@ -16,5 +16,17 @@ namespace PNP.Controllers
         {
             return View(db.Stories.ToList());
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Story item)
+        {
+            db.Stories.Add(item);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,16 @@
+﻿@model PNP.Models.Story
+
+<h2>Edit</h2>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.StoryId)
+
+    @Html.EditorFor(model => model.Description)
+
+    <input type="submit" value="Save" />
+
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>

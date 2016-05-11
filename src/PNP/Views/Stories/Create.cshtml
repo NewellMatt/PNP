@@ -1,10 +1,9 @@
 ﻿@model PNP.Models.Story
 
-<html>
-<head>
-    <title>To Do List - Create</title>
-</head>
-<body>
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
     <h2>Create</h2>
     <hr />
     <h4>Add a new task</h4>
@@ -15,5 +14,3 @@
         <input type="submit" value="Add new story" />
     }
     <p>@Html.ActionLink("Back to list", "Index")</p>
-</body>
-</html>

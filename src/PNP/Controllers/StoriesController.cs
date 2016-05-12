@@ -54,5 +54,10 @@ namespace PNP.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Details(int id)
+        {
+            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            return View(thisStory);
+        }
     }
 }

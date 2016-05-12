@@ -12,7 +12,7 @@ namespace PNP.Controllers
 {
     public class StoriesController : Controller
     {
-        private PNPContext db = new PNPContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         public IActionResult Index()
         {
             return View(db.Stories.ToList());

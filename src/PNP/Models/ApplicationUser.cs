@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PNP.Models
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
     }
 }

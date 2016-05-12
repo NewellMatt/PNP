@@ -23,10 +23,10 @@ namespace PNP
             services.AddMvc();
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<PNPContext>(options =>
+                .AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<PNPContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
         }
 

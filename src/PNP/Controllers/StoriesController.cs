@@ -72,9 +72,5 @@ namespace PNP.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
-        public IActionResult ShowAllComments(int id)
-        {
-            return View();
-        }
     }
 }

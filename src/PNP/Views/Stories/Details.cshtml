@@ -18,4 +18,4 @@
     <p>@Html.ActionLink("Back to list", "Index")</p>
     <p>@Html.ActionLink("Comment on this story", "AddAComment", new { id = Model.StoryId })</p>
 
-    <p>@Html.ActionLink("Show Comments", "ShowAllComments", new { id = Model.StoryId })</p>
+    <p>@Html.ActionLink("Show Comments", "ShowSpecificComments", "Comments", new { id = Model.StoryId })</p>

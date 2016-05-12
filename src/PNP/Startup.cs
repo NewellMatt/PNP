@@ -22,9 +22,9 @@ namespace PNP
         {
             services.AddMvc();
             services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+.AddSqlServer()
+.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

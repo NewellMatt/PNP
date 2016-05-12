@@ -1,0 +1,16 @@
+﻿@model PNP.Models.Comment
+
+@{
+    ViewData["Title"] = "Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Comment</h2>
+<hr />
+<h4>Add a new comment</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description)
+    <input type="submit" value="Add new comment" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>

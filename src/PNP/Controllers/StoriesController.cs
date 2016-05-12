@@ -32,7 +32,7 @@ namespace PNP.Controllers
         }
         public IActionResult Edit(int id)
         {
-            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            var thisStory = db.Stories.FirstOrDefault(s => s.StoryId == id);
             return View(thisStory);
         }
         [HttpPost]
@@ -44,22 +44,37 @@ namespace PNP.Controllers
         }
         public IActionResult Delete(int id)
         {
-            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            var thisStory = db.Stories.FirstOrDefault(s => s.StoryId == id);
             return View(thisStory);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            var thisStory = db.Stories.FirstOrDefault(s => s.StoryId == id);
             db.Stories.Remove(thisStory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Details(int id)
         {
-            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            var thisStory = db.Stories.FirstOrDefault(s => s.StoryId == id);
             return View(thisStory);
+        }
+        public IActionResult AddAComment(int id)
+        {
+            return View();
+        }
+        //[HttpPost]
+        //public IActionResult AddAComment(Comment item)
+        //{
+        //    db.Comments.Add(item);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+        public IActionResult ShowAllComments(int id)
+        {
+            return View();
         }
     }
 }

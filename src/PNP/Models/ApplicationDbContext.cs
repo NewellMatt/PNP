@@ -6,7 +6,6 @@ namespace PNP.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Story> Stories { get; set; }
-
         public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

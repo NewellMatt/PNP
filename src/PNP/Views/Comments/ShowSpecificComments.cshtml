@@ -1,0 +1,13 @@
+﻿@model IEnumerable<PNP.Models.Comment>
+
+@{
+    ViewData["Title"] = "Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Comments</h2>
+
+@foreach (var listComment in Model)
+{
+    @Html.DisplayFor(modelComment => listComment.Description) <br />
+        @Html.DisplayFor(modelComment => listComment.Story.Description)<br />
+}

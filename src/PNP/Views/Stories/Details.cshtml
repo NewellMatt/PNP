@@ -8,4 +8,14 @@
     <h2>Details</h2>
     <hr />
     @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
+
+    <h2>Add a comment</h2>
+
+
+    @*show all comments that pertain to this story*@
+    
+
     <p>@Html.ActionLink("Back to list", "Index")</p>
+    <p>@Html.ActionLink("Comment on this story", "AddAComment", new { id = Model.StoryId })</p>
+
+    <p>@Html.ActionLink("Show Comments", "ShowAllComments", new { id = Model.StoryId })</p>

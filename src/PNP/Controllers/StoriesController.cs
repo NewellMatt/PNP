@@ -40,5 +40,19 @@ namespace PNP.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(int id)
+        {
+            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            return View(thisStory);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisStory = db.Stories.FirstOrDefault(items => items.StoryId == id);
+            db.Stories.Remove(thisStory);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

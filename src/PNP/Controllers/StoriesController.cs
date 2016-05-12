@@ -65,12 +65,14 @@ namespace PNP.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public IActionResult AddAComment(Comment item)
-        //{
-        //    db.Comments.Add(item);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        public IActionResult DisplayViewWithAjax()
+        {
+            return View();
+        }
+        public IActionResult ShowSpecificComments(int id)
+        {
+            var thisStory = (db.Comments.Where(c => c.StoryId == id));
+            return View(thisStory);
+        }
     }
 }

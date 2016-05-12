@@ -8,6 +8,8 @@
 
 @foreach (var listComment in Model)
 {
+    <p>Comment Number: @Html.DisplayFor(modelComment => listComment.CommentId)</p>
     @Html.DisplayFor(modelComment => listComment.Description) <br />
-        @Html.DisplayFor(modelComment => listComment.Story.Description)<br />
+    @Html.DisplayFor(modelComment => listComment.Story.Description)<br />
+
 }

@@ -4,18 +4,25 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
     <h2>Details</h2>
     <hr />
     @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
 
-    <h2>Add a comment</h2>
+    <h4 class="display-view">Click to Display Comments</h4>
+    <div id="result4"></div>
+<p>@Html.ActionLink("Back to list", "Index")</p>
 
-
-    @*show all comments that pertain to this story*@
-    
-
-    <p>@Html.ActionLink("Back to list", "Index")</p>
-    <p>@Html.ActionLink("Comment on this story", "AddAComment", new { id = Model.StoryId })</p>
-
-    <p>@Html.ActionLink("Show Comments", "ShowSpecificComments", "Comments", new { id = Model.StoryId })</p>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.display-view').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'html',
+                    url: '@Url.Action("ShowSpecificComments","Comments", new { id = @Model.StoryId})',
+                    success: function (result) {
+                        $('#result4').html(result);
+                    }
+                });
+            });
+        });
+    </script>

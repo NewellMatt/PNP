@@ -7,6 +7,8 @@ namespace PNP.Models
     {
         public DbSet<Story> Stories { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=PNP;integrated security=True;");

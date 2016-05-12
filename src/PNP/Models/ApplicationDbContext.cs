@@ -9,7 +9,7 @@ namespace PNP.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ToDoList;integrated security=True;");
+            options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=PNP;integrated security=True;");
         }
     }
 }

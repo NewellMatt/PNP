@@ -24,9 +24,9 @@ namespace PNP.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Story item)
+        public IActionResult Create(Story story)
         {
-            db.Stories.Add(item);
+            db.Stories.Add(story);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

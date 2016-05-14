@@ -10,6 +10,8 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.StoryId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.LabelFor(model => model.Content)
 
     @Html.EditorFor(model => model.Description)
 

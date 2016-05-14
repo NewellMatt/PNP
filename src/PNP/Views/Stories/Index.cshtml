@@ -4,37 +4,30 @@
 }
 @model IEnumerable<PNP.Models.Story>
 
-    <h2>Public News Paper</h2>
+<h2>Public News Paper</h2>
 
-<div class="new-post-button">
-    <button class="display-new-story" name="CreatePost">New Post</button>
+<div class="new-story-button">
+    <button class="display-new-story" name="CreatePost">New Story</button>
 </div>
-<div>
-    @foreach (var story in Model)
-    {
-        <div class="container post">
-            <h3>@story.Name</h3>
-            <p> -@Html.DisplayFor(x => story.Description)</p>
+@foreach (var story in Model)
+{
+    <div class="container post">
+        <h3>@story.Name</h3>
+        <p> -@Html.DisplayFor(x => story.Description)</p>
 
-            <button class="comment-story" value=@Html.DisplayFor(x => story.StoryId) name="CommentPost">Comment</button> |
-            <button class="details-story" value=@Html.DisplayFor(x => story.StoryId) name="DetailsPost">Details</button> |
-            <button class="edit-story" value=@Html.DisplayFor(x => story.StoryId) name="EditPost">Edit</button> |
-            <button class="delete-story" value=@Html.DisplayFor(x => story.StoryId) name="DeletePost">Delete</button>
-            <div id="details"></div>
-        </div>
-    }
+        <button class="comment-story" value=@Html.DisplayFor(x => story.StoryId) name="CommentPost">Comment</button> |
+        <button class="details-story" value=@Html.DisplayFor(x => story.StoryId) name="DetailsPost">Details</button> |
+        <button class="edit-story" value=@Html.DisplayFor(x => story.StoryId) name="EditPost">Edit</button> |
+        <button class="delete-story" value=@Html.DisplayFor(x => story.StoryId) name="DeletePost">Delete</button>
+        <div id="details"></div>
+    </div>
+}
     <br />
     <br />
     <div class="container footer">
-
-
-
-
-
         @*Everything gets html'd here*@
-        <div id="ModalPost"></div>
+        <div id="UpdatedItems"></div>
     </div>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -47,7 +40,7 @@
                 data: { id : this.value},
                 url: '@Url.Action("Create", "Comments")',
                 success: function (result) {
-                    $('#ModalPost').html(result);
+                    $('#UpdatedItems').html(result);
                 }
             });
         });
@@ -59,7 +52,7 @@
                 data: { id: this.value },
                 url: '@Url.Action("Create")',
                 success: function (result) {
-                    $('#ModalPost').html(result);
+                    $('#UpdatedItems').html(result);
                 }
             });
         });
@@ -68,7 +61,7 @@
                 type: 'GET',
                 dataType: 'html',
                 data: { id: this.value },
-                url: '@Url.Action("Index", "Comments")',
+                url: '@Url.Action("ShowSpecificComments", "Comments")',
                 success: function (result) {
                     $('#details').html(result);
                 }
@@ -82,7 +75,7 @@
                 data: { id: this.value },
                 url: '@Url.Action("Edit")',
                 success: function (result) {
-                    $('#ModalPost').html(result);
+                    $('#UpdatedItems').html(result);
                 }
             });
         });
@@ -94,7 +87,7 @@
                     data: { id : this.value},
                     url: '@Url.Action("Delete")',
                     success: function (result) {
-                        $('#ModalPost').html(result);
+                        $('#UpdatedItems').html(result);
                     }
                 });
             });

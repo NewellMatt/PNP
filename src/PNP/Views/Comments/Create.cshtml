@@ -1,21 +1,20 @@
-﻿@model PNP.Models.Comment
+﻿@using System.Security.Claims
 
-@{
-    ViewData["Title"] = "Comment - Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<h2>Create a new comment</h2>
-<hr />
+@model PNP.Models.Comment
+<div class="createComment">
+    <h1>Create new comment</h1>
+    <br />
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="Name" id="Name" value=@User.GetUserName()>
+        <input id="StoryId" type="hidden" name="StoryId" value=@ViewBag.StoryId />
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)
 
-    @Html.LabelFor(model => model.StoryId)
-    @Html.DropDownList("StoryId")
+        <p>@Html.LabelFor(model => model.Description)</p>
+            <p>@Html.TextAreaFor(model => model.Description)</p>
 
-    <input type="submit" value="Create" class="btn btn-default" />
-}
+            <input type="submit" value="Create" class="btn btn-success" />
+    }
+</div>
 
-@Html.ActionLink("Back to List", "Index")
+@Html.ActionLink("Back to List", "Index", "Stories")

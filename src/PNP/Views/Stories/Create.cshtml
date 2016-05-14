@@ -13,7 +13,7 @@
         <input id="PostId" type="hidden" name="PostId" value=@ViewBag.StoryId />
 
         @Html.LabelFor(model => model.Description)
-        @Html.TextBoxFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
         <input type="submit" value="Add new story" />
     }
     <p>@Html.ActionLink("Back to list", "Index")</p>

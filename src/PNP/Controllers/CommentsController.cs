@@ -13,32 +13,45 @@ namespace PNP.Controllers
     [Authorize]
     public class CommentsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        //public IActionResult Index(int id)
-        //{
-        //    return View(_db.Comments.Where(comments => comments.StoryId == id).Include(comments => comments.Story).ToList());
-        //}
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CommentsController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db
+        )
+        {
+            _userManager = userManager;
+            _db = db;
+        }
+        public IActionResult Index(int id)
+        {
+            return View(_db.Comments.Where(comments => comments.StoryId == id).Include(comments => comments.Story).ToList());
+        }
         public IActionResult Details(int id)
         {
-            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
             return View(thisComment);
         }
 
-        public ActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewBag.StoryId = new SelectList(db.Stories, "StoryId", "Name");
+            ViewBag.StoryId = id;
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Comment item)
+        public async Task<IActionResult> Create(Comment comment)
         {
-            db.Comments.Add(item);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var id = comment.StoryId;
+            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Stories");
         }
+
         public IActionResult ShowSpecificComments(int id)
         {
-            var thisStory = (db.Comments.ToList());  //Where(c => c.StoryId == id));
+            var thisStory = (_db.Comments.ToList());  //Where(c => c.StoryId == id));
             return View(thisStory);
         }
     }

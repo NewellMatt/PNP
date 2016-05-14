@@ -9,7 +9,7 @@
 
 @foreach (var listComment in Model)
 {
-    <p>Comment Number: @Html.DisplayFor(modelComment => listComment.CommentId)</p>
+    <p>From: @Html.DisplayFor(modelComment => listComment.Name)</p>
     <p>Description: @Html.DisplayFor(modelComment => listComment.Description)  </p>
     <hr />
 }

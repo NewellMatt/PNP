@@ -51,7 +51,7 @@ namespace PNP.Controllers
 
         public IActionResult ShowSpecificComments(int id)
         {
-            var thisStory = (_db.Comments.ToList());  //Where(c => c.StoryId == id));
+            var thisStory = (_db.Comments.Where(c => c.StoryId == id));
             return View(thisStory);
         }
     }

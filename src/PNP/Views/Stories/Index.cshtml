@@ -5,10 +5,98 @@
 @model IEnumerable<PNP.Models.Story>
 
     <h2>Public News Paper</h2>
-    <ul>
-        @foreach (var listStory in Model)
-        {
-            <li>@Html.DisplayFor(modelItem => listStory.Description) | @Html.ActionLink("Edit", "Edit", new { id = listStory.StoryId }) | @Html.ActionLink("Delete", "Delete", new { id = listStory.StoryId }) | @Html.ActionLink("Details", "Details", new { id = listStory.StoryId })</li>
-        }
-    </ul>
-    <p>@Html.ActionLink("Add new item", "Create")</p>
+
+<div class="new-post-button">
+    <button class="display-new-story" name="CreatePost">New Post</button>
+</div>
+<div>
+    @foreach (var story in Model)
+    {
+        <div class="container post">
+            <h3>@story.Name</h3>
+            <p> -@Html.DisplayFor(x => story.Description)</p>
+
+            <button class="comment-story" value=@Html.DisplayFor(x => story.StoryId) name="CommentPost">Comment</button> |
+            <button class="details-story" value=@Html.DisplayFor(x => story.StoryId) name="DetailsPost">Details</button> |
+            <button class="edit-story" value=@Html.DisplayFor(x => story.StoryId) name="EditPost">Edit</button> |
+            <button class="delete-story" value=@Html.DisplayFor(x => story.StoryId) name="DeletePost">Delete</button>
+            <div id="details"></div>
+        </div>
+    }
+    <br />
+    <br />
+    <div class="container footer">
+
+
+
+
+
+        @*Everything gets html'd here*@
+        <div id="ModalPost"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.comment-story').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id : this.value},
+                url: '@Url.Action("Create", "Comments")',
+                success: function (result) {
+                    $('#ModalPost').html(result);
+                }
+            });
+        });
+        $('.display-new-story').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Create")',
+                success: function (result) {
+                    $('#ModalPost').html(result);
+                }
+            });
+        });
+        $('.details-story').click(function () {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Index", "Comments")',
+                success: function (result) {
+                    $('#details').html(result);
+                }
+            });
+        });
+        $('.edit-story').click(function () {
+            $('#myInput').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Edit")',
+                success: function (result) {
+                    $('#ModalPost').html(result);
+                }
+            });
+        });
+        $('.delete-story').click(function () {
+                $('#myInput').focus()
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'html',
+                    data: { id : this.value},
+                    url: '@Url.Action("Delete")',
+                    success: function (result) {
+                        $('#ModalPost').html(result);
+                    }
+                });
+            });
+        });
+</script>

@@ -8,9 +8,10 @@ using PNP.Models;
 namespace PNP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160514023918_ContentProp")]
+    partial class ContentProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -168,8 +169,6 @@ namespace PNP.Migrations
                     b.Property<string>("Content");
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 

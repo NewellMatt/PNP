@@ -8,11 +8,16 @@
     <hr />
     @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
 
-    <h4 class="display-view">Click to Display Comments</h4>
+    @*<h4 class="display-view">Click to Display Comments</h4>
     <div id="result4"></div>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+    <p>@Html.ActionLink("Back to list", "Index")</p>*@
+    @*//instead for now lets show a link to the show all comments*@
+    @Html.ActionLink("Show comments", "ShowSpecificComments", "Comments", new { id = @Model.StoryId })
+    <p>
+        @Html.ActionLink("Create New Comment", "Create", "Comments")
+    </p>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(document).ready(function () {
             $('.display-view').click(function () {
                 $.ajax({
@@ -25,4 +30,4 @@
                 });
             });
         });
-    </script>
+    </script>*@

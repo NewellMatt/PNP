@@ -1,14 +1,17 @@
 ﻿@model PNP.Models.Story
+@using System.Security.Claims
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Story - Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <h2>Create</h2>
     <hr />
-    <h4>Add a new story</h4>
+    <h4>Create a new story</h4>
     @using (Html.BeginForm())
     {
+        <input type="hidden" name="Name" id="Name" value=@User.GetUserName()>
+        <input id="PostId" type="hidden" name="PostId" value=@ViewBag.StoryId />
+
         @Html.LabelFor(model => model.Description)
         @Html.TextBoxFor(model => model.Description)
         <input type="submit" value="Add new story" />

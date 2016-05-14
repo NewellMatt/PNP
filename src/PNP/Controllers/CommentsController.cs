@@ -13,33 +13,33 @@ namespace PNP.Controllers
     [Authorize]
     public class CommentsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
-        private readonly ApplicationDbContext _db;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
+        //public IActionResult Index(int id)
+        //{
+        //    return View(_db.Comments.Where(comments => comments.StoryId == id).Include(comments => comments.Story).ToList());
+        //}
+        public IActionResult Details(int id)
+        {
+            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            return View(thisComment);
+        }
 
-        public CommentsController(
-            UserManager<ApplicationUser> userManager,
-            ApplicationDbContext db
-        )
+        public ActionResult Create()
         {
-            _userManager = userManager;
-            _db = db;
-        }
-        public IActionResult ShowSpecificComments(int id)
-        {
-            var thisStory = (_db.Comments.Where(c => c.StoryId == id));
-            return View(thisStory);
-        }
-        public IActionResult Create()
-        {
+            ViewBag.StoryId = new SelectList(db.Stories, "StoryId", "Name");
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Comment comment)
+        public ActionResult Create(Comment item)
         {
-            _db.Comments.Add(comment);
-            _db.SaveChanges();
+            db.Comments.Add(item);
+            db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult ShowSpecificComments(int id)
+        {
+            var thisStory = (db.Comments.ToList());  //Where(c => c.StoryId == id));
+            return View(thisStory);
         }
     }
 }

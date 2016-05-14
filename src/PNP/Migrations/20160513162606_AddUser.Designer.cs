@@ -8,9 +8,10 @@ using PNP.Models;
 namespace PNP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160513162606_AddUser")]
+    partial class AddUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -155,6 +156,8 @@ namespace PNP.Migrations
 
                     b.Property<int>("StoryId");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("CommentId");
 
                     b.HasAnnotation("Relational:TableName", "Comments");
@@ -165,11 +168,7 @@ namespace PNP.Migrations
                     b.Property<int>("StoryId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Content");
-
                     b.Property<string>("Description");
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 
@@ -215,6 +214,10 @@ namespace PNP.Migrations
                     b.HasOne("PNP.Models.Story")
                         .WithMany()
                         .HasForeignKey("StoryId");
+
+                    b.HasOne("PNP.Models.ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("PNP.Models.Story", b =>

@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<PNP.Models.Comment>
 
-@{
-    ViewData["Title"] = "Comment";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 @using System.Security.Claims
 <h2>Comments</h2>
 
@@ -11,5 +7,40 @@
 {
     <p>From: @Html.DisplayFor(modelComment => listComment.Name)</p>
     <p>Description: @Html.DisplayFor(modelComment => listComment.Description)  </p>
+    <button class="edit-comment" value=@Html.DisplayFor(modelComment => listComment.CommentId)>Edit</button> 
+    <button class="delete-comment" value=@Html.DisplayFor(modelComment => listComment.CommentId)>Delete</button>
+
     <hr />
 }
+
+
+<div id="CommentEdited"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.edit-comment').click(function () {
+            $('#Modal').focus()
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                data: { id: this.value },
+                url: '@Url.Action("Edit")',
+                success: function (result) {
+                    $('#CommentEdited').html(result);
+                }
+            });
+        });
+        $('.delete-comment').click(function () {
+                $('#Modal').focus()
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'html',
+                    data: { id : this.value},
+                    url: '@Url.Action("Delete", "Comments")',
+                    success: function (result) {
+                        $('#CommentEdited').html(result);
+                    }
+                });
+            });
+        });
+</script>

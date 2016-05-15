@@ -54,5 +54,32 @@ namespace PNP.Controllers
             var thisStory = (_db.Comments.Where(c => c.StoryId == id));
             return View(thisStory);
         }
+        public IActionResult Delete(int id)
+        {
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            return View(thisComment);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            _db.Comments.Remove(thisComment);
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Stories");
+        }
+        public IActionResult Edit(int id)
+        {
+            var thisComment = _db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            ViewBag.StoryId = new SelectList(_db.Stories, "StoryId", "Description");
+            return View(thisComment);
+        }
+        [HttpPost]
+        public IActionResult Edit(Comment comment)
+        {
+            var id = comment.StoryId;
+            _db.Entry(comment).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Stories");
+        }
     }
 }

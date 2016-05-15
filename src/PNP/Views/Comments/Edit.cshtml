@@ -1,0 +1,18 @@
+﻿@model PNP.Models.Comment
+<h3>Edit current Comment</h3>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.StoryId)
+    @Html.HiddenFor(model => model.CommentId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.LabelFor(model => model.Description)
+    <br />
+    @Html.EditorFor(model => model.Description)
+
+
+    <input type="submit" value="Save"/>
+}
+@Html.ActionLink("Back to post", "Index", "Comments", new { id = Model.StoryId })
+

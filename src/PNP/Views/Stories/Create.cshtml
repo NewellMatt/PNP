@@ -8,8 +8,11 @@
         <input type="hidden" name="Name" id="Name" value=@User.GetUserName()>
         <input id="PostId" type="hidden" name="PostId" value=@ViewBag.StoryId />
 
-        @Html.LabelFor(model => model.Description)
-        @Html.TextAreaFor(model => model.Description)
+        @Html.LabelFor(model => model.Title)
+        @Html.TextAreaFor(model => model.Title)
+
+        @Html.LabelFor(model => model.Content)
+        @Html.TextAreaFor(model => model.Content)
         <input type="submit" value="Add new story" />
     }
     <p>@Html.ActionLink("Back to list", "Index")</p>

@@ -10,16 +10,17 @@
     <button class="display-new-story" data-toggle="modal" data-target="#textModal">New Story</button>
 </div>
 <div>
-    @foreach (var post in Model)
+    @foreach (var story in Model)
     {
         <div class="container post">
-            <h3>@post.Name</h3>
-            <p> -"@Html.DisplayFor(x => post.Description)"</p>
+            <h3>@Html.DisplayFor(x => story.Title)</h3>
+            <p>By: @story.Name</p>
+            <p>@Html.DisplayFor(x => story.Content)</p>
 
-            <button class="comment-story" value=@Html.DisplayFor(x => post.StoryId) data-toggle="modal" data-target="#textModal">Comment</button> |
-            <button class="details-story" value=@Html.DisplayFor(x => post.StoryId)  data-toggle="modal" data-target="#textModal">Details</button> |
-            <button class="edit-story" value=@Html.DisplayFor(x => post.StoryId)  data-toggle="modal" data-target="#textModal">Edit</button> |
-            <button class="delete-story" value=@Html.DisplayFor(x => post.StoryId)  data-toggle="modal" data-target="#textModal">Delete</button>
+            <button class="comment-story" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Comment</button> |
+            <button class="details-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Details</button> |
+            <button class="edit-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Edit</button> |
+            <button class="delete-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Delete</button>
             <div id="details"></div>
         </div>
     }

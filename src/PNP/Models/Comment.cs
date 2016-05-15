@@ -16,6 +16,6 @@ namespace PNP.Models
         public int StoryId { get; set; }
         public string Name { get; set; }
         public virtual Story Story { get; set; }
-       // public virtual ApplicationUser User { get; set; }
+       //public virtual ApplicationUser User { get; set; }
     }
 }

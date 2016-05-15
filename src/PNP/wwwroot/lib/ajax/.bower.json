@@ -1,0 +1,46 @@
+{
+  "name": "ajax",
+  "version": "2.0.0",
+  "homepage": "https://github.com/fdaciuk/ajax",
+  "authors": [
+    "Fernando Daciuk"
+  ],
+  "description": "Ajax module in Vanilla JS",
+  "main": "dist/ajax.min.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "ajax",
+    "xhr",
+    "XMLHttpRequest",
+    "promises",
+    "promise"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.md",
+    "*.yml",
+    "*.js",
+    "package.json",
+    "ajax-logo.png",
+    "api",
+    "coverage",
+    "node_modules",
+    "plato",
+    "src",
+    "test"
+  ],
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "a1dfaca03581275442ed5f90699e25111e847b98"
+  },
+  "_source": "https://github.com/fdaciuk/ajax.git",
+  "_target": "*",
+  "_originalSource": "ajax"
+}

@@ -68,5 +68,17 @@ namespace PNP.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index");
         }
+
+        public IActionResult SendMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SendMessage(Message newMessage)
+        {
+            newMessage.Send();
+            return RedirectToAction("Index");
+        }
     }
 }

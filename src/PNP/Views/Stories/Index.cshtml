@@ -17,10 +17,14 @@
             <p>By: @story.Name</p>
             <p>@Html.DisplayFor(x => story.Content)</p>
 
-            <button class="comment-story" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Comment</button> |
-            <button class="details-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Details</button> |
-            <button class="edit-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Edit</button> |
-            <button class="delete-story" value=@Html.DisplayFor(x => story.StoryId)  data-toggle="modal" data-target="#textModal">Delete</button>
+            
+
+            <div class="btn-group" role="group" aria-label="...">
+                <button class="comment-story btn btn-default" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Comment</button> 
+                <button class="details-story btn btn-default" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Details</button> 
+                <button class="edit-story btn btn-default" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Edit</button> 
+                <button class="delete-story btn btn-default" value=@Html.DisplayFor(x => story.StoryId) data-toggle="modal" data-target="#textModal">Delete</button>
+            </div>
             <div id="details"></div>
         </div>
     }
